@@ -53,9 +53,20 @@ const initialClients = [
   },
 ];
 
+const emptyForm = {
+  name: "",
+  company: "",
+  email: "",
+  phone: "",
+  status: "Active",
+};
+
 function Clients() {
-  const [clients] = useState(initialClients);
+  const [clients, setClients] = useState(initialClients);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState(emptyForm);
+  const [formError, setFormError] = useState("");
 
   const filteredClients = useMemo(() => {
     const normalizedSearch = searchTerm.trim().toLowerCase();
@@ -73,6 +84,57 @@ function Clients() {
     });
   }, [clients, searchTerm]);
 
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+
+    setFormData((currentData) => ({
+      ...currentData,
+      [name]: value,
+    }));
+
+    setFormError("");
+  }
+
+  function handleOpenModal() {
+    setFormData(emptyForm);
+    setFormError("");
+    setIsModalOpen(true);
+  }
+
+  function handleCloseModal() {
+    setIsModalOpen(false);
+    setFormData(emptyForm);
+    setFormError("");
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const trimmedName = formData.name.trim();
+    const trimmedCompany = formData.company.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedPhone = formData.phone.trim();
+
+    if (!trimmedName || !trimmedCompany || !trimmedEmail || !trimmedPhone) {
+      setFormError("Please complete all fields before creating the client.");
+      return;
+    }
+
+    const newClient = {
+      id: Date.now(),
+      name: trimmedName,
+      company: trimmedCompany,
+      email: trimmedEmail,
+      phone: trimmedPhone,
+      status: formData.status,
+      projects: 0,
+      joined: "Sep 25, 2026",
+    };
+
+    setClients((currentClients) => [newClient, ...currentClients]);
+    handleCloseModal();
+  }
+
   return (
     <main className="page-content">
       <div className="page-header">
@@ -85,7 +147,9 @@ function Clients() {
           </p>
         </div>
 
-        <button className="primary-button">Add client</button>
+        <button className="primary-button" onClick={handleOpenModal}>
+          Add client
+        </button>
       </div>
 
       <section className="clients-toolbar">
@@ -189,6 +253,124 @@ function Clients() {
           </div>
         )}
       </section>
+
+      {isModalOpen && (
+        <div
+          className="modal-backdrop"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              handleCloseModal();
+            }
+          }}
+        >
+          <section
+            className="client-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="add-client-title"
+          >
+            <div className="modal-header">
+              <div>
+                <p className="modal-eyebrow">Client management</p>
+                <h2 id="add-client-title">Add new client</h2>
+                <p>
+                  Add the client's basic information to your FlowDesk workspace.
+                </p>
+              </div>
+
+              <button
+                className="modal-close-button"
+                onClick={handleCloseModal}
+                aria-label="Close modal"
+              >
+                ×
+              </button>
+            </div>
+
+            <form className="client-form" onSubmit={handleSubmit}>
+              <div className="form-grid">
+                <label className="form-field">
+                  <span>Full name</span>
+                  <input
+                    name="name"
+                    type="text"
+                    placeholder="e.g. Sarah Mitchell"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                  />
+                </label>
+
+                <label className="form-field">
+                  <span>Company</span>
+                  <input
+                    name="company"
+                    type="text"
+                    placeholder="e.g. Northstar Labs"
+                    value={formData.company}
+                    onChange={handleInputChange}
+                  />
+                </label>
+
+                <label className="form-field">
+                  <span>Email address</span>
+                  <input
+                    name="email"
+                    type="email"
+                    placeholder="name@company.com"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                  />
+                </label>
+
+                <label className="form-field">
+                  <span>Phone number</span>
+                  <input
+                    name="phone"
+                    type="tel"
+                    placeholder="+1 555 000 0000"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                  />
+                </label>
+
+                <label className="form-field form-field-full">
+                  <span>Status</span>
+                  <select
+                    name="status"
+                    value={formData.status}
+                    onChange={handleInputChange}
+                  >
+                    <option value="Active">Active</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
+                </label>
+              </div>
+
+              {formError && (
+                <p className="form-error" role="alert">
+                  {formError}
+                </p>
+              )}
+
+              <div className="modal-actions">
+                <button
+                  type="button"
+                  className="secondary-button"
+                  onClick={handleCloseModal}
+                >
+                  Cancel
+                </button>
+
+                <button type="submit" className="primary-button">
+                  Create client
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+      )}
     </main>
   );
 }
