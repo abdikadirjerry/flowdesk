@@ -919,6 +919,59 @@ a {
   border-top: 1px solid var(--color-border);
 }
 
+/* Coming soon */
+
+.coming-soon-card {
+  display: flex;
+  min-height: 480px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 50px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.coming-soon-icon {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  background: #eef2ff;
+  color: var(--color-primary);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.coming-soon-card h1 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 26px;
+  letter-spacing: -0.03em;
+}
+
+.coming-soon-card > p:not(.page-eyebrow) {
+  max-width: 480px;
+  margin: 10px 0 20px;
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.coming-soon-badge {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #697386;
+  font-size: 10px;
+  font-weight: 600;
+}
+
 @media (max-width: 1100px) {
   .stats-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1057,5 +1110,10 @@ a {
 
   .form-field-full {
     grid-column: auto;
+  }
+
+  .coming-soon-card {
+    min-height: 380px;
+    padding: 30px 20px;
   }
 }
