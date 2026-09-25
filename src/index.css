@@ -972,6 +972,134 @@ a {
   font-weight: 600;
 }
 
+/* Project Card */
+
+.project-card {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e8ebf2;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(23, 32, 51, 0.04);
+}
+
+.project-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.project-card__priority {
+  display: block;
+  margin-bottom: 6px;
+  color: #7b8497;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.project-card h3 {
+  color: #172033;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.project-card__status {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.project-card__status--in-progress {
+  color: #2563eb;
+  background: #eff6ff;
+}
+
+.project-card__status--planning {
+  color: #b45309;
+  background: #fffbeb;
+}
+
+.project-card__status--completed {
+  color: #15803d;
+  background: #f0fdf4;
+}
+
+.project-card__description {
+  min-height: 48px;
+  margin-bottom: 24px;
+  color: #687286;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.project-card__progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: #687286;
+  font-size: 13px;
+}
+
+.project-card__progress-header strong {
+  color: #172033;
+}
+
+.project-card__progress {
+  width: 100%;
+  height: 7px;
+  margin-bottom: 22px;
+  overflow: hidden;
+  background: #edf0f5;
+  border-radius: 999px;
+}
+
+.project-card__progress-bar {
+  height: 100%;
+  background: #4f46e5;
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+
+.project-card__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 18px;
+  border-top: 1px solid #edf0f5;
+}
+
+.project-card__footer div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.project-card__footer span {
+  color: #8a93a5;
+  font-size: 12px;
+}
+
+.project-card__footer strong {
+  color: #374151;
+  font-size: 13px;
+}
+
+@media (max-width: 700px) {
+  .project-card__top {
+    flex-direction: column;
+  }
+
+  .project-card__footer {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 1100px) {
   .stats-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
