@@ -1,0 +1,85 @@
+.invoice-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 0.8fr 0.8fr 70px;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 22px;
+  border-top: 1px solid #eef2f7;
+  background: #ffffff;
+}
+
+.invoice-row__number {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.invoice-row__number strong {
+  color: #1e293b;
+  font-size: 13px;
+}
+
+.invoice-row__number span {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.invoice-row__date {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.invoice-row__date span {
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.invoice-row__date strong {
+  color: #475569;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.invoice-row__amount strong {
+  color: #1e293b;
+  font-size: 13px;
+}
+
+.invoice-row__status {
+  width: fit-content;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.invoice-row__status--paid {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.invoice-row__status--pending {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.invoice-row__status--overdue {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.invoice-row__button {
+  padding: 7px 10px;
+  border: 1px solid #dbe1e8;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.invoice-row__button:hover {
+  background: #f8fafc;
+}
