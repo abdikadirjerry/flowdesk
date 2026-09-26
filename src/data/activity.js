@@ -1,0 +1,68 @@
+const activity = [
+  {
+    id: 1,
+    type: "project",
+    title: "Project status updated",
+    description: "Website Redesign was moved to In Progress.",
+    user: "Sarah Mitchell",
+    time: "10 minutes ago",
+  },
+  {
+    id: 2,
+    type: "task",
+    title: "Task completed",
+    description: "Review design tokens was marked as completed.",
+    user: "Michael Brown",
+    time: "35 minutes ago",
+  },
+  {
+    id: 3,
+    type: "invoice",
+    title: "Invoice paid",
+    description: "Northstar Labs paid invoice INV-2026-001.",
+    user: "Finance Team",
+    time: "1 hour ago",
+  },
+  {
+    id: 4,
+    type: "client",
+    title: "New client onboarded",
+    description: "Orbit Digital completed the onboarding process.",
+    user: "Emily Johnson",
+    time: "2 hours ago",
+  },
+  {
+    id: 5,
+    type: "task",
+    title: "Task created",
+    description: "API documentation was added to the Mobile App project.",
+    user: "James Anderson",
+    time: "3 hours ago",
+  },
+  {
+    id: 6,
+    type: "project",
+    title: "Project progress updated",
+    description: "Mobile App progress increased to 48%.",
+    user: "Daniel Carter",
+    time: "5 hours ago",
+  },
+  {
+    id: 7,
+    type: "invoice",
+    title: "Invoice overdue",
+    description: "Invoice INV-2026-003 is now overdue.",
+    user: "Finance Team",
+    time: "Yesterday",
+  },
+  {
+    id: 8,
+    type: "client",
+    title: "Client details updated",
+    description: "Contact information for Bluewave Media was updated.",
+    user: "Olivia Wilson",
+    time: "Yesterday",
+  },
+];
+
+export default activity;
