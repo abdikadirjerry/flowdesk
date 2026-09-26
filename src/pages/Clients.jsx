@@ -1,6 +1,8 @@
 import { useState } from "react";
 import clients from "../data/clients";
 import ClientCard from "../components/clients/ClientCard";
+import "../components/clients/ClientCard.css";
+import "./Clients.css";
 
 function Clients() {
   const [search, setSearch] = useState("");

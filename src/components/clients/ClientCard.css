@@ -1,0 +1,93 @@
+.client-card {
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.client-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.client-card__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.client-card__status {
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.client-card__status--active {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.client-card__status--onboarding {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.client-card__status--inactive {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.client-card__content h3 {
+  margin: 0 0 7px;
+  color: #1e293b;
+  font-size: 17px;
+}
+
+.client-card__contact {
+  margin: 0 0 5px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.client-card__email {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.client-card__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid #eef2f7;
+}
+
+.client-card__footer div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.client-card__footer span {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.client-card__footer strong {
+  color: #334155;
+  font-size: 13px;
+}
