@@ -1,0 +1,155 @@
+.activity-page {
+  padding: 32px;
+}
+
+.activity-page__header {
+  margin-bottom: 28px;
+}
+
+.activity-page__eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.activity-page__header h1 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 30px;
+}
+
+.activity-page__header p {
+  max-width: 620px;
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.activity-page__summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.activity-page__summary-card {
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.activity-page__summary-card span {
+  display: block;
+  margin-bottom: 9px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.activity-page__summary-card strong {
+  color: #0f172a;
+  font-size: 24px;
+}
+
+.activity-page__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 16px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.activity-page__toolbar h2 {
+  margin: 0 0 5px;
+  color: #1e293b;
+  font-size: 16px;
+}
+
+.activity-page__toolbar p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.activity-page__toolbar select {
+  height: 40px;
+  min-width: 150px;
+  padding: 0 12px;
+  border: 1px solid #dbe1e8;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 12px;
+  outline: none;
+}
+
+.activity-page__toolbar select:focus {
+  border-color: #2563eb;
+}
+
+.activity-page__timeline {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.activity-page__empty {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.activity-page__empty h2 {
+  margin: 0 0 8px;
+  color: #1e293b;
+  font-size: 20px;
+}
+
+.activity-page__empty p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .activity-page__summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .activity-page {
+    padding: 20px;
+  }
+
+  .activity-page__summary {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-page__toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .activity-page__toolbar select {
+    width: 100%;
+  }
+
+  .activity-page__timeline {
+    padding: 20px;
+  }
+
+  .activity-item__top {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
