@@ -4,25 +4,19 @@ import Clients from "./pages/Clients";
 import ComingSoon from "./pages/ComingSoon";
 import Dashboard from "./pages/Dashboard";
 import Projects from "./pages/Projects";
+import Tasks from "./pages/Tasks";
 
 function App() {
   return (
     <Routes>
       <Route element={<AppLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
+
         <Route path="/clients" element={<Clients />} />
 
         <Route path="/projects" element={<Projects />} />
 
-        <Route
-          path="/tasks"
-          element={
-            <ComingSoon
-              title="Tasks"
-              description="Organize work with task lists, priorities, assignments, and a Kanban workflow."
-            />
-          }
-        />
+        <Route path="/tasks" element={<Tasks />} />
 
         <Route
           path="/invoices"
