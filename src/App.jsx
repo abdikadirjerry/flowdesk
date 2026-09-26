@@ -3,6 +3,7 @@ import AppLayout from "./components/layout/AppLayout";
 import Clients from "./pages/Clients";
 import ComingSoon from "./pages/ComingSoon";
 import Dashboard from "./pages/Dashboard";
+import Invoices from "./pages/Invoices";
 import Projects from "./pages/Projects";
 import Tasks from "./pages/Tasks";
 
@@ -18,15 +19,7 @@ function App() {
 
         <Route path="/tasks" element={<Tasks />} />
 
-        <Route
-          path="/invoices"
-          element={
-            <ComingSoon
-              title="Invoices"
-              description="Track invoices, payment status, billing information, and client payments."
-            />
-          }
-        />
+        <Route path="/invoices" element={<Invoices />} />
 
         <Route
           path="/activity"
