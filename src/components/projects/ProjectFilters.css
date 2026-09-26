@@ -1,0 +1,132 @@
+.project-filters {
+  display: flex;
+  align-items: end;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.project-filters__search,
+.project-filters__select {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.project-filters__search {
+  flex: 1;
+}
+
+.project-filters label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.project-filters input,
+.project-filters select {
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #dbe1e8;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #1e293b;
+  font-size: 14px;
+  outline: none;
+}
+
+.project-filters input {
+  min-width: 220px;
+}
+
+.project-filters input:focus,
+.project-filters select:focus {
+  border-color: #2563eb;
+}
+
+.project-filters__reset {
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid #dbe1e8;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.project-filters__reset:hover {
+  background: #f8fafc;
+}
+
+.project-filters__total {
+  align-self: center;
+  margin-left: auto;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.projects-page__empty {
+  padding: 60px 24px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.projects-page__empty h2 {
+  margin: 0 0 8px;
+  color: #1e293b;
+  font-size: 20px;
+}
+
+.projects-page__empty p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .project-filters {
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  .project-filters__search {
+    flex-basis: 100%;
+  }
+
+  .project-filters__total {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-filters {
+    flex-direction: column;
+  }
+
+  .project-filters__search,
+  .project-filters__select {
+    width: 100%;
+  }
+
+  .project-filters input,
+  .project-filters select {
+    width: 100%;
+  }
+
+  .project-filters__reset {
+    width: 100%;
+  }
+
+  .project-filters__total {
+    align-self: flex-start;
+  }
+}

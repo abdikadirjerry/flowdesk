@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./ProjectFilters.css";
 
 function ProjectFilters({ projects, onFilter }) {
   const [search, setSearch] = useState("");
