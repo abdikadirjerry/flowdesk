@@ -1,4 +1,4 @@
-function ProjectCard({ project }) {
+function ProjectCard({ project, onEdit, onDelete, onStatusChange }) {
   return (
     <article className="project-card">
       <div className="project-card__top">
@@ -10,6 +10,26 @@ function ProjectCard({ project }) {
           <h3>{project.name}</h3>
         </div>
 
+        <div className="project-card__actions">
+          <button
+            type="button"
+            className="project-card__edit"
+            onClick={() => onEdit(project)}
+          >
+            Edit
+          </button>
+
+          <button
+            type="button"
+            className="project-card__delete"
+            onClick={() => onDelete(project.id)}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+
+      <div className="project-card__status-row">
         <span
           className={`project-card__status project-card__status--${project.status
             .toLowerCase()
@@ -17,6 +37,17 @@ function ProjectCard({ project }) {
         >
           {project.status}
         </span>
+
+        <select
+          value={project.status}
+          onChange={(event) => onStatusChange(project.id, event.target.value)}
+          className="project-card__status-select"
+          aria-label={`Change status for ${project.name}`}
+        >
+          <option value="Planning">Planning</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+        </select>
       </div>
 
       <p className="project-card__description">{project.description}</p>
