@@ -2,47 +2,55 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import clients from "../../data/clients";
 import invoices from "../../data/invoices";
-import projects from "../../data/projects";
 import tasks from "../../data/tasks";
+import { useProjects } from "../../context/useProjects";
 import "./GlobalSearch.css";
-
-const searchableItems = [
-  ...projects.map((project) => ({
-    id: `project-${project.id}`,
-    title: project.name,
-    description: project.description,
-    category: "Project",
-    path: "/projects",
-  })),
-  ...clients.map((client) => ({
-    id: `client-${client.id}`,
-    title: client.name,
-    description: `${client.contact} · ${client.email}`,
-    category: "Client",
-    path: "/clients",
-  })),
-  ...tasks.map((task) => ({
-    id: `task-${task.id}`,
-    title: task.title,
-    description: `${task.project} · ${task.status}`,
-    category: "Task",
-    path: "/tasks",
-  })),
-  ...invoices.map((invoice) => ({
-    id: `invoice-${invoice.id}`,
-    title: invoice.id,
-    description: `${invoice.client} · ${invoice.amount} · ${invoice.status}`,
-    category: "Invoice",
-    path: "/invoices",
-  })),
-];
 
 const categoryOrder = ["Project", "Client", "Task", "Invoice"];
 
 function GlobalSearch() {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+
   const navigate = useNavigate();
+  const { projects } = useProjects();
+
+  const searchableItems = useMemo(
+    () => [
+      ...projects.map((project) => ({
+        id: `project-${project.id}`,
+        title: project.name,
+        description: project.description,
+        category: "Project",
+        path: "/projects",
+      })),
+
+      ...clients.map((client) => ({
+        id: `client-${client.id}`,
+        title: client.name,
+        description: `${client.contact} · ${client.email}`,
+        category: "Client",
+        path: "/clients",
+      })),
+
+      ...tasks.map((task) => ({
+        id: `task-${task.id}`,
+        title: task.title,
+        description: `${task.project} · ${task.status}`,
+        category: "Task",
+        path: "/tasks",
+      })),
+
+      ...invoices.map((invoice) => ({
+        id: `invoice-${invoice.id}`,
+        title: invoice.id,
+        description: `${invoice.client} · ${invoice.amount} · ${invoice.status}`,
+        category: "Invoice",
+        path: "/invoices",
+      })),
+    ],
+    [projects],
+  );
 
   const results = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -56,7 +64,7 @@ function GlobalSearch() {
         .toLowerCase()
         .includes(normalizedQuery),
     );
-  }, [query]);
+  }, [query, searchableItems]);
 
   const groupedResults = categoryOrder
     .map((category) => ({
@@ -179,7 +187,9 @@ function GlobalSearch() {
                 <span className="global-search__empty-icon" aria-hidden="true">
                   ?
                 </span>
+
                 <strong>No matching results</strong>
+
                 <p>Try another name, keyword, or invoice number.</p>
               </div>
             )}
