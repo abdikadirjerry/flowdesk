@@ -10,7 +10,11 @@ function ProjectProvider({ children }) {
     const savedProjects = localStorage.getItem(STORAGE_KEY);
 
     if (savedProjects) {
-      return JSON.parse(savedProjects);
+      try {
+        return JSON.parse(savedProjects);
+      } catch {
+        return projectsData;
+      }
     }
 
     return projectsData;
@@ -62,6 +66,10 @@ function ProjectProvider({ children }) {
     );
   }
 
+  function resetProjects() {
+    setProjects(projectsData);
+  }
+
   return (
     <ProjectContext.Provider
       value={{
@@ -70,6 +78,7 @@ function ProjectProvider({ children }) {
         updateProject,
         deleteProject,
         updateProjectStatus,
+        resetProjects,
       }}
     >
       {children}
