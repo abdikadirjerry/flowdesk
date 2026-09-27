@@ -1,105 +1,271 @@
+import clients from "../data/clients";
+import invoices from "../data/invoices";
+import projects from "../data/projects";
+import tasks from "../data/tasks";
+import "./Dashboard.css";
+
 function Dashboard() {
+  const totalRevenue = invoices.reduce((total, invoice) => {
+    return total + Number(invoice.amount.replace(/[$,]/g, ""));
+  }, 0);
+
+  const paidRevenue = invoices
+    .filter((invoice) => invoice.status === "Paid")
+    .reduce((total, invoice) => {
+      return total + Number(invoice.amount.replace(/[$,]/g, ""));
+    }, 0);
+
+  const outstandingRevenue = invoices
+    .filter((invoice) => invoice.status !== "Paid")
+    .reduce((total, invoice) => {
+      return total + Number(invoice.amount.replace(/[$,]/g, ""));
+    }, 0);
+
+  const activeProjects = projects.filter(
+    (project) => project.status === "In Progress",
+  ).length;
+
+  const completedProjects = projects.filter(
+    (project) => project.status === "Completed",
+  ).length;
+
+  const completedTasks = tasks.filter(
+    (task) => task.status === "Completed",
+  ).length;
+
+  const taskCompletionRate = Math.round((completedTasks / tasks.length) * 100);
+
+  const averageProjectProgress = Math.round(
+    projects.reduce((total, project) => total + project.progress, 0) /
+      projects.length,
+  );
+
+  const recentTasks = [...tasks].slice(0, 4);
+  const recentInvoices = [...invoices].slice(0, 4);
+
   return (
-    <main className="page-content">
-      <div className="page-header">
+    <section className="dashboard-page">
+      <div className="dashboard-page__header">
         <div>
-          <p className="page-eyebrow">Overview</p>
-          <h1>Good morning, welcome to FlowDesk.</h1>
-          <p className="page-description">
-            Manage your clients, projects, tasks, and business operations from
-            one workspace.
-          </p>
+          <span className="dashboard-page__eyebrow">Workspace overview</span>
+
+          <h1>Good morning, Alex</h1>
+
+          <p>Here&apos;s what&apos;s happening across your workspace today.</p>
         </div>
 
-        <button className="primary-button">Create project</button>
+        <span className="dashboard-page__date">September 27, 2026</span>
       </div>
 
-      <section className="stats-grid">
-        <article className="stat-card">
-          <div className="stat-card-top">
-            <span className="stat-label">Active clients</span>
-            <span className="stat-icon">CL</span>
+      <div className="dashboard-stats">
+        <article className="dashboard-stat-card">
+          <div className="dashboard-stat-card__top">
+            <span>Total revenue</span>
+            <span className="dashboard-stat-card__icon dashboard-stat-card__icon--blue">
+              $
+            </span>
           </div>
 
-          <strong className="stat-value">24</strong>
+          <strong>${totalRevenue.toLocaleString()}</strong>
 
-          <p className="stat-change positive">+8.2% this month</p>
+          <p>
+            <span className="dashboard-stat-card__positive">
+              ${paidRevenue.toLocaleString()}
+            </span>{" "}
+            collected
+          </p>
         </article>
 
-        <article className="stat-card">
-          <div className="stat-card-top">
-            <span className="stat-label">Active projects</span>
-            <span className="stat-icon">PR</span>
+        <article className="dashboard-stat-card">
+          <div className="dashboard-stat-card__top">
+            <span>Outstanding</span>
+            <span className="dashboard-stat-card__icon dashboard-stat-card__icon--orange">
+              $
+            </span>
           </div>
 
-          <strong className="stat-value">12</strong>
+          <strong>${outstandingRevenue.toLocaleString()}</strong>
 
-          <p className="stat-change positive">+3 this month</p>
+          <p>
+            {invoices.filter((invoice) => invoice.status !== "Paid").length}{" "}
+            invoices awaiting payment
+          </p>
         </article>
 
-        <article className="stat-card">
-          <div className="stat-card-top">
-            <span className="stat-label">Open tasks</span>
-            <span className="stat-icon">TK</span>
+        <article className="dashboard-stat-card">
+          <div className="dashboard-stat-card__top">
+            <span>Active projects</span>
+            <span className="dashboard-stat-card__icon dashboard-stat-card__icon--purple">
+              P
+            </span>
           </div>
 
-          <strong className="stat-value">48</strong>
+          <strong>{activeProjects}</strong>
 
-          <p className="stat-change negative">+5 from yesterday</p>
+          <p>
+            {completedProjects} project
+            {completedProjects === 1 ? "" : "s"} completed
+          </p>
         </article>
 
-        <article className="stat-card">
-          <div className="stat-card-top">
-            <span className="stat-label">Upcoming deadlines</span>
-            <span className="stat-icon">DL</span>
+        <article className="dashboard-stat-card">
+          <div className="dashboard-stat-card__top">
+            <span>Task completion</span>
+            <span className="dashboard-stat-card__icon dashboard-stat-card__icon--green">
+              ✓
+            </span>
           </div>
 
-          <strong className="stat-value">7</strong>
+          <strong>{taskCompletionRate}%</strong>
 
-          <p className="stat-change neutral">Next 7 days</p>
+          <p>
+            {completedTasks} of {tasks.length} tasks completed
+          </p>
         </article>
-      </section>
+      </div>
 
-      <section className="dashboard-grid">
-        <article className="dashboard-card">
-          <div className="card-header">
+      <div className="dashboard-main-grid">
+        <section className="dashboard-panel dashboard-panel--projects">
+          <div className="dashboard-panel__header">
             <div>
-              <p className="card-eyebrow">Projects</p>
-              <h2>Recent projects</h2>
+              <h2>Project progress</h2>
+              <p>Current progress across your projects.</p>
             </div>
 
-            <button className="text-button">View all</button>
+            <span className="dashboard-panel__metric">
+              {averageProjectProgress}% avg.
+            </span>
           </div>
 
-          <div className="empty-dashboard-state">
-            <div className="empty-state-icon">P</div>
-            <h3>No projects yet</h3>
-            <p>
-              Your most recent projects will appear here once you create them.
-            </p>
-          </div>
-        </article>
+          <div className="dashboard-project-list">
+            {projects.map((project) => (
+              <div className="dashboard-project" key={project.id}>
+                <div className="dashboard-project__top">
+                  <div>
+                    <strong>{project.name}</strong>
+                    <span>{project.status}</span>
+                  </div>
 
-        <article className="dashboard-card">
-          <div className="card-header">
+                  <strong>{project.progress}%</strong>
+                </div>
+
+                <div className="dashboard-project__bar">
+                  <div
+                    className="dashboard-project__bar-fill"
+                    style={{ width: `${project.progress}%` }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="dashboard-panel">
+          <div className="dashboard-panel__header">
             <div>
-              <p className="card-eyebrow">Activity</p>
-              <h2>Recent activity</h2>
+              <h2>Workspace overview</h2>
+              <p>Current workspace metrics.</p>
+            </div>
+          </div>
+
+          <div className="dashboard-overview">
+            <div className="dashboard-overview__item">
+              <span>Clients</span>
+              <strong>{clients.length}</strong>
             </div>
 
-            <button className="text-button">View all</button>
+            <div className="dashboard-overview__item">
+              <span>Projects</span>
+              <strong>{projects.length}</strong>
+            </div>
+
+            <div className="dashboard-overview__item">
+              <span>Tasks</span>
+              <strong>{tasks.length}</strong>
+            </div>
+
+            <div className="dashboard-overview__item">
+              <span>Invoices</span>
+              <strong>{invoices.length}</strong>
+            </div>
           </div>
 
-          <div className="empty-dashboard-state">
-            <div className="empty-state-icon">A</div>
-            <h3>No recent activity</h3>
-            <p>
-              Updates from your workspace will appear here as your team works.
-            </p>
+          <div className="dashboard-overview__footer">
+            <span>Workspace status</span>
+            <strong>
+              <span className="dashboard-overview__status-dot" />
+              Operational
+            </strong>
           </div>
-        </article>
-      </section>
-    </main>
+        </section>
+      </div>
+
+      <div className="dashboard-bottom-grid">
+        <section className="dashboard-panel">
+          <div className="dashboard-panel__header">
+            <div>
+              <h2>Recent tasks</h2>
+              <p>Latest work across your projects.</p>
+            </div>
+          </div>
+
+          <div className="dashboard-task-list">
+            {recentTasks.map((task) => (
+              <article className="dashboard-task" key={task.id}>
+                <div
+                  className={`dashboard-task__priority dashboard-task__priority--${task.priority.toLowerCase()}`}
+                >
+                  {task.priority}
+                </div>
+
+                <div className="dashboard-task__content">
+                  <strong>{task.title}</strong>
+                  <span>{task.project}</span>
+                </div>
+
+                <span
+                  className={`dashboard-task__status dashboard-task__status--${task.status
+                    .toLowerCase()
+                    .replace(" ", "-")}`}
+                >
+                  {task.status}
+                </span>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="dashboard-panel">
+          <div className="dashboard-panel__header">
+            <div>
+              <h2>Recent invoices</h2>
+              <p>Latest billing activity.</p>
+            </div>
+          </div>
+
+          <div className="dashboard-invoice-list">
+            {recentInvoices.map((invoice) => (
+              <article className="dashboard-invoice" key={invoice.id}>
+                <div>
+                  <strong>{invoice.id}</strong>
+                  <span>{invoice.client}</span>
+                </div>
+
+                <div className="dashboard-invoice__right">
+                  <strong>{invoice.amount}</strong>
+
+                  <span
+                    className={`dashboard-invoice__status dashboard-invoice__status--${invoice.status.toLowerCase()}`}
+                  >
+                    {invoice.status}
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      </div>
+    </section>
   );
 }
 
