@@ -1,0 +1,245 @@
+.notification-panel {
+  position: relative;
+  z-index: 40;
+}
+
+.notification-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 19px;
+  height: 19px;
+  margin-left: 5px;
+  padding: 0 5px;
+  border-radius: 20px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.notification-panel__backdrop {
+  position: fixed;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  cursor: default;
+}
+
+.notification-panel__dropdown {
+  position: absolute;
+  z-index: 2;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 370px;
+  max-height: min(570px, 75vh);
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.16);
+}
+
+.notification-panel__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 19px 20px 15px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.notification-panel__header h2 {
+  margin: 0 0 5px;
+  color: #1e293b;
+  font-size: 16px;
+}
+
+.notification-panel__header p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.notification-panel__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 29px;
+  border: 0;
+  border-radius: 7px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.notification-panel__close:hover {
+  background: #f1f5f9;
+}
+
+.notification-panel__actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.notification-panel__actions button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.notification-panel__actions button:hover {
+  text-decoration: underline;
+}
+
+.notification-panel__list {
+  max-height: 430px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  display: flex;
+  gap: 12px;
+  padding: 15px 18px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.notification-item:last-child {
+  border-bottom: 0;
+}
+
+.notification-item--unread {
+  background: #f8fbff;
+}
+
+.notification-item--read {
+  background: #ffffff;
+}
+
+.notification-item__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.notification-item__icon--invoice {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.notification-item__icon--task {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.notification-item__icon--client {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+
+.notification-item__icon--project {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.notification-item__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-item__title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.notification-item__title h3 {
+  margin: 0;
+  color: #1e293b;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.notification-item__unread-dot {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2563eb;
+}
+
+.notification-item__content p {
+  margin: 5px 0;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.notification-item__time {
+  display: block;
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.notification-item__read-button {
+  margin-top: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #2563eb;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.notification-item__read-button:hover {
+  text-decoration: underline;
+}
+
+.notification-panel__empty {
+  padding: 36px 20px;
+  text-align: center;
+}
+
+.notification-panel__empty strong {
+  color: #334155;
+  font-size: 13px;
+}
+
+.notification-panel__empty p {
+  margin: 7px 0 0;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+  .notification-panel__dropdown {
+    position: fixed;
+    top: 76px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-height: calc(100vh - 95px);
+  }
+
+  .notification-panel__list {
+    max-height: calc(100vh - 220px);
+  }
+}
