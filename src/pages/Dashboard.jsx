@@ -1,6 +1,7 @@
 import clients from "../data/clients";
 import invoices from "../data/invoices";
 import tasks from "../data/tasks";
+import EmptyState from "../components/ui/EmptyState";
 import { useProjects } from "../context/useProjects";
 import "./Dashboard.css";
 
@@ -142,34 +143,43 @@ function Dashboard() {
               <p>Current progress across your projects.</p>
             </div>
 
-            <span className="dashboard-panel__metric">
-              {averageProjectProgress}% avg.
-            </span>
+            {projects.length > 0 && (
+              <span className="dashboard-panel__metric">
+                {averageProjectProgress}% avg.
+              </span>
+            )}
           </div>
 
-          <div className="dashboard-project-list">
-            {projects.map((project) => (
-              <div className="dashboard-project" key={project.id}>
-                <div className="dashboard-project__top">
-                  <div>
-                    <strong>{project.name}</strong>
-                    <span>{project.status}</span>
+          {projects.length > 0 ? (
+            <div className="dashboard-project-list">
+              {projects.map((project) => (
+                <div className="dashboard-project" key={project.id}>
+                  <div className="dashboard-project__top">
+                    <div>
+                      <strong>{project.name}</strong>
+                      <span>{project.status}</span>
+                    </div>
+
+                    <strong>{project.progress}%</strong>
                   </div>
 
-                  <strong>{project.progress}%</strong>
+                  <div className="dashboard-project__bar">
+                    <div
+                      className="dashboard-project__bar-fill"
+                      style={{
+                        width: `${project.progress}%`,
+                      }}
+                    />
+                  </div>
                 </div>
-
-                <div className="dashboard-project__bar">
-                  <div
-                    className="dashboard-project__bar-fill"
-                    style={{
-                      width: `${project.progress}%`,
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <EmptyState
+              title="No projects available"
+              message="Create a project from the Projects workspace to see progress here."
+            />
+          )}
         </section>
 
         <section className="dashboard-panel">
