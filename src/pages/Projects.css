@@ -1,0 +1,135 @@
+.projects-page {
+  padding: 32px;
+}
+
+.projects-page__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.projects-page__eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.projects-page__header h1 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 30px;
+}
+
+.projects-page__header p {
+  max-width: 620px;
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.projects-page__button {
+  flex-shrink: 0;
+  padding: 11px 17px;
+  border: 0;
+  border-radius: 9px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.projects-page__button:hover {
+  background: #1d4ed8;
+}
+
+.projects-page__summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.projects-page__summary-card {
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.projects-page__summary-card span {
+  display: block;
+  margin-bottom: 9px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.projects-page__summary-card strong {
+  color: #0f172a;
+  font-size: 24px;
+}
+
+.projects-page__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.projects-page__empty {
+  padding: 60px 24px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.projects-page__empty h2 {
+  margin: 0 0 8px;
+  color: #1e293b;
+  font-size: 20px;
+}
+
+.projects-page__empty p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .projects-page__summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .projects-page__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .projects-page {
+    padding: 20px 16px;
+  }
+
+  .projects-page__header {
+    flex-direction: column;
+  }
+
+  .projects-page__header h1 {
+    font-size: 26px;
+  }
+
+  .projects-page__button {
+    width: 100%;
+  }
+
+  .projects-page__summary {
+    grid-template-columns: 1fr;
+  }
+}
