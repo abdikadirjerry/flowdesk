@@ -1,18 +1,26 @@
 import { useMemo, useState } from "react";
-import projectsData from "../data/projects";
 import ProjectCard from "../components/projects/ProjectCard";
 import ProjectFilters from "../components/projects/ProjectFilters";
 import ProjectModal from "../components/projects/ProjectModal";
+import { useProjects } from "../context/useProjects";
 import "../components/projects/ProjectCard.css";
 import "../components/projects/ProjectModal.css";
 
 function Projects() {
-  const [projects, setProjects] = useState(projectsData);
+  const {
+    projects,
+    addProject,
+    updateProject,
+    deleteProject,
+    updateProjectStatus,
+  } = useProjects();
+
   const [filters, setFilters] = useState({
     search: "",
     status: "All",
     priority: "All",
   });
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProject, setEditingProject] = useState(null);
 
@@ -61,23 +69,9 @@ function Projects() {
 
   function handleSaveProject(projectData) {
     if (editingProject) {
-      setProjects((current) =>
-        current.map((project) =>
-          project.id === editingProject.id
-            ? {
-                ...project,
-                ...projectData,
-              }
-            : project,
-        ),
-      );
+      updateProject(editingProject.id, projectData);
     } else {
-      const newProject = {
-        id: Date.now(),
-        ...projectData,
-      };
-
-      setProjects((current) => [newProject, ...current]);
+      addProject(projectData);
     }
 
     handleCloseModal();
@@ -100,23 +94,11 @@ function Projects() {
       return;
     }
 
-    setProjects((current) =>
-      current.filter((currentProject) => currentProject.id !== projectId),
-    );
+    deleteProject(projectId);
   }
 
   function handleStatusChange(projectId, status) {
-    setProjects((current) =>
-      current.map((project) =>
-        project.id === projectId
-          ? {
-              ...project,
-              status,
-              progress: status === "Completed" ? 100 : project.progress,
-            }
-          : project,
-      ),
-    );
+    updateProjectStatus(projectId, status);
   }
 
   return (
