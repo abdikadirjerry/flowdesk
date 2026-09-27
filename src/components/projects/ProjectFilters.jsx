@@ -8,6 +8,7 @@ function ProjectFilters({ projects, onFilter }) {
 
   function handleSearchChange(event) {
     const value = event.target.value;
+
     setSearch(value);
 
     onFilter({
@@ -19,6 +20,7 @@ function ProjectFilters({ projects, onFilter }) {
 
   function handleStatusChange(event) {
     const value = event.target.value;
+
     setStatus(value);
 
     onFilter({
@@ -30,6 +32,7 @@ function ProjectFilters({ projects, onFilter }) {
 
   function handlePriorityChange(event) {
     const value = event.target.value;
+
     setPriority(value);
 
     onFilter({
