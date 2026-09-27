@@ -6,7 +6,7 @@ import EmptyState from "../components/ui/EmptyState";
 import { useProjects } from "../context/useProjects";
 import "../components/projects/ProjectCard.css";
 import "../components/projects/ProjectModal.css";
-
+import "./Projects.css"
 function Projects() {
   const {
     projects,
