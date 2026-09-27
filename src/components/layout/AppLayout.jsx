@@ -1,5 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 import GlobalSearch from "../search/GlobalSearch";
+import NotificationPanel from "../notifications/NotificationPanel";
+import UserProfile from "../profile/UserProfile";
 
 function AppLayout() {
   return (
@@ -118,17 +120,8 @@ function AppLayout() {
 
           <div className="topbar-actions">
             <GlobalSearch />
-
-            <button
-              type="button"
-              className="topbar-button notification-button"
-              aria-label="Notifications"
-            >
-              <span className="notification-dot"></span>
-              Notifications
-            </button>
-
-            <div className="topbar-avatar">AJ</div>
+            <NotificationPanel />
+            <UserProfile />
           </div>
         </header>
 
