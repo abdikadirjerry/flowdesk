@@ -1,0 +1,139 @@
+.user-profile {
+  position: relative;
+  z-index: 40;
+}
+
+.user-profile__trigger {
+  border: 0;
+  cursor: pointer;
+}
+
+.user-profile__trigger:hover {
+  filter: brightness(0.96);
+}
+
+.user-profile__backdrop {
+  position: fixed;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  cursor: default;
+}
+
+.user-profile__dropdown {
+  position: absolute;
+  z-index: 2;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 285px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.15);
+}
+
+.user-profile__identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 19px;
+}
+
+.user-profile__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+  border-radius: 12px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.user-profile__identity-details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.user-profile__identity-details strong {
+  overflow: hidden;
+  color: #1e293b;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-profile__identity-details span {
+  overflow: hidden;
+  color: #94a3b8;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-profile__divider {
+  height: 1px;
+  background: #f1f5f9;
+}
+
+.user-profile__details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 17px 19px;
+}
+
+.user-profile__label {
+  margin-top: 5px;
+  color: #94a3b8;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.user-profile__details strong {
+  color: #334155;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.user-profile__details .user-profile__plan {
+  color: #2563eb;
+}
+
+.user-profile__footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 19px;
+  border-top: 1px solid #f1f5f9;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.user-profile__status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #16a34a;
+}
+
+@media (max-width: 600px) {
+  .user-profile__dropdown {
+    position: fixed;
+    top: 76px;
+    right: 12px;
+    width: min(285px, calc(100vw - 24px));
+  }
+}
