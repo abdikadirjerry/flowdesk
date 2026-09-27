@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
+import GlobalSearch from "../search/GlobalSearch";
 
 function AppLayout() {
   return (
@@ -98,7 +99,11 @@ function AppLayout() {
               <span>Administrator</span>
             </div>
 
-            <button className="user-menu-button" aria-label="Open user menu">
+            <button
+              type="button"
+              className="user-menu-button"
+              aria-label="Open user menu"
+            >
               •••
             </button>
           </div>
@@ -112,11 +117,10 @@ function AppLayout() {
           </div>
 
           <div className="topbar-actions">
-            <button className="topbar-button" aria-label="Search">
-              Search
-            </button>
+            <GlobalSearch />
 
             <button
+              type="button"
               className="topbar-button notification-button"
               aria-label="Notifications"
             >
