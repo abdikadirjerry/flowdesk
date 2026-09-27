@@ -1,117 +1,222 @@
 # FlowDesk
 
-FlowDesk is a modern SaaS-style workspace for managing clients, projects, tasks, invoices, deadlines, and business operations.
+A professional project management dashboard built with React.
 
-The project is being built as a portfolio-level React application and will progressively evolve into a full-stack application.
+FlowDesk is a SaaS-style workspace designed to help teams manage projects, clients, tasks, invoices, activity, and workspace operations from one interface.
+
+## Features
+
+- Dashboard with real-time calculated workspace statistics
+- Project management workspace
+- Create, edit, delete, and update projects
+- Project search and filtering
+- Project progress tracking
+- Client management interface
+- Task management Kanban board
+- Invoice management workspace
+- Activity timeline
+- Global search
+- Notification center
+- User profile dropdown
+- LocalStorage persistence
+- Shared project state with React Context
+- Loading, empty, and error states
+- Responsive layout for desktop, tablet, and mobile
+- Accessible interactive components
+- Reusable React components
 
 ## Tech Stack
 
 - React
-- Vite
 - React Router
 - JavaScript
 - CSS
-- Node.js
-- Express
-- PostgreSQL
-- Prisma
-- REST API
-- Authentication
-- Authorization
+- Vite
+- LocalStorage
+- React Context API
+- Git
+- GitHub
 
-## Current Status
+## Project Structure
 
-🚧 Project in active development.
-
-### Completed
-
-- React + Vite setup
-- Professional project structure
-- Application shell
-- Responsive sidebar
-- Dashboard foundation
-- React Router setup
-
-### Planned
-
-- Client management
-- Project management
-- Task management
-- Kanban board
-- Invoice management
-- Activity timeline
-- Search and filtering
-- Notifications
-- Authentication
-- Backend API
-- PostgreSQL database
-- Prisma ORM
-- Role-based authorization
-- Testing
-- Production deployment
-
-## Getting Started
-
-### Clone the repository
-
-```bash
-git clone <repository-url>
-cd flowdesk
-```
-
-Install dependencies
-npm install
-Start the development server
-npm run dev
-Available Scripts
-npm run dev
-npm run build
-npm run preview
-npm run lint
-Project Structure
+```text
 src/
 ├── components/
-│ ├── layout/
-│ └── ui/
+│   ├── activity/
+│   ├── clients/
+│   ├── invoices/
+│   ├── layout/
+│   ├── notifications/
+│   ├── profile/
+│   ├── projects/
+│   ├── search/
+│   ├── tasks/
+│   └── ui/
+│
+├── context/
+│   ├── ProjectContext.jsx
+│   └── useProjects.js
+│
+├── data/
+│   ├── activity.js
+│   ├── clients.js
+│   ├── invoices.js
+│   ├── notifications.js
+│   ├── projects.js
+│   └── tasks.js
+│
 ├── pages/
-├── routes/
-├── assets/
+│   ├── Activity.jsx
+│   ├── Activity.css
+│   ├── Clients.jsx
+│   ├── Clients.css
+│   ├── Dashboard.jsx
+│   ├── Dashboard.css
+│   ├── Invoices.jsx
+│   ├── Invoices.css
+│   ├── Projects.jsx
+│   ├── Projects.css
+│   ├── Tasks.jsx
+│   └── Tasks.css
+│
 ├── App.jsx
 ├── index.css
 └── main.jsx
-License
+```
 
-This project is built for educational and portfolio purposes.
+Getting Started
 
----
+1. Clone the repository
+   git clone YOUR_REPOSITORY_URL
+2. Enter the project
+   cd flowdesk
+3. Install dependencies
+   npm install
+4. Start the development server
+   npm run dev
 
-# 11. Test the project
+The application will be available through the local Vite development URL.
 
-Run:
+Main Workspaces
+Dashboard
 
-```bash
-npm run dev
+Provides an overview of:
 
-You should see a local URL similar to:
+Revenue
+Outstanding invoices
+Active projects
+Task completion
+Project progress
+Workspace metrics
+Recent tasks
+Recent invoices
+Projects
 
-http://localhost:5173/
+The Projects workspace supports:
 
-Open it in your browser.
+Creating projects
+Editing projects
+Deleting projects
+Updating project status
+Tracking progress
+Searching projects
+Filtering by status
+Filtering by priority
 
-You should see the FlowDesk dashboard with:
+Project changes are persisted through browser LocalStorage.
 
-Dark sidebar
-FlowDesk branding
-Dashboard navigation
 Clients
+
+Provides client information including:
+
+Client status
+Contact information
+Project count
+Revenue
+Search
+Status filtering
+Tasks
+
+Provides a Kanban-style workspace for:
+
+To Do
+In Progress
+Completed
+Invoices
+
+Provides invoice tracking for:
+
+Paid invoices
+Pending invoices
+Overdue invoices
+Invoice values
+Client billing information
+Activity
+
+Displays a workspace activity timeline for:
+
 Projects
 Tasks
 Invoices
-Activity
-Workspace information
-User profile
-Dashboard statistics
-Recent projects section
-Recent activity section
-Responsive layout
-```
+Clients
+Global Search
+
+Searches across:
+
+Projects
+Clients
+Tasks
+Invoices
+
+Project search results are connected to the shared project state.
+
+State Management
+
+FlowDesk currently uses React Context for project state management.
+
+The project context handles:
+
+Project creation
+Project updates
+Project deletion
+Project status updates
+LocalStorage persistence
+
+This architecture provides a foundation for replacing LocalStorage with a backend API in a future version.
+
+Future Improvements
+
+Potential future versions can include:
+
+Backend API
+Authentication
+PostgreSQL database
+Prisma ORM
+Real-time collaboration
+Team member management
+Role-based permissions
+Cloud deployment
+Automated testing
+Analytics
+Email notifications
+Learning Goals
+
+This project was built to practice professional frontend development concepts including:
+
+React component architecture
+React Router
+State management
+Context API
+Custom hooks
+CRUD operations
+LocalStorage
+Form handling
+Search and filtering
+Responsive UI design
+Accessibility
+Reusable components
+Git workflow
+Portfolio-oriented project development
+Author
+
+Built as a portfolio project to demonstrate practical React development and frontend engineering skills.
