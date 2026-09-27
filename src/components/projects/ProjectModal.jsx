@@ -30,6 +30,28 @@ function ProjectModal({ isOpen, project, onClose, onSave }) {
     }
   }, [project, isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      return undefined;
+    }
+
+    function handleKeyDown(event) {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) {
     return null;
   }
@@ -62,12 +84,19 @@ function ProjectModal({ isOpen, project, onClose, onSave }) {
         onClick={onClose}
       />
 
-      <div className="project-modal">
+      <div
+        className="project-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-modal-title"
+      >
         <div className="project-modal__header">
           <div>
             <span className="project-modal__eyebrow">Project management</span>
 
-            <h2>{project ? "Edit project" : "Create project"}</h2>
+            <h2 id="project-modal-title">
+              {project ? "Edit project" : "Create project"}
+            </h2>
 
             <p>
               {project
@@ -97,6 +126,7 @@ function ProjectModal({ isOpen, project, onClose, onSave }) {
               placeholder="e.g. Website Redesign"
               value={form.name}
               onChange={handleChange}
+              autoFocus
               required
             />
           </div>
