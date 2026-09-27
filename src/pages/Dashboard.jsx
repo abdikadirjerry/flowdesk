@@ -1,10 +1,12 @@
 import clients from "../data/clients";
 import invoices from "../data/invoices";
-import projects from "../data/projects";
 import tasks from "../data/tasks";
+import { useProjects } from "../context/useProjects";
 import "./Dashboard.css";
 
 function Dashboard() {
+  const { projects } = useProjects();
+
   const totalRevenue = invoices.reduce((total, invoice) => {
     return total + Number(invoice.amount.replace(/[$,]/g, ""));
   }, 0);
@@ -35,10 +37,13 @@ function Dashboard() {
 
   const taskCompletionRate = Math.round((completedTasks / tasks.length) * 100);
 
-  const averageProjectProgress = Math.round(
-    projects.reduce((total, project) => total + project.progress, 0) /
-      projects.length,
-  );
+  const averageProjectProgress =
+    projects.length > 0
+      ? Math.round(
+          projects.reduce((total, project) => total + project.progress, 0) /
+            projects.length,
+        )
+      : 0;
 
   const recentTasks = [...tasks].slice(0, 4);
   const recentInvoices = [...invoices].slice(0, 4);
@@ -61,6 +66,7 @@ function Dashboard() {
         <article className="dashboard-stat-card">
           <div className="dashboard-stat-card__top">
             <span>Total revenue</span>
+
             <span className="dashboard-stat-card__icon dashboard-stat-card__icon--blue">
               $
             </span>
@@ -79,6 +85,7 @@ function Dashboard() {
         <article className="dashboard-stat-card">
           <div className="dashboard-stat-card__top">
             <span>Outstanding</span>
+
             <span className="dashboard-stat-card__icon dashboard-stat-card__icon--orange">
               $
             </span>
@@ -95,6 +102,7 @@ function Dashboard() {
         <article className="dashboard-stat-card">
           <div className="dashboard-stat-card__top">
             <span>Active projects</span>
+
             <span className="dashboard-stat-card__icon dashboard-stat-card__icon--purple">
               P
             </span>
@@ -111,6 +119,7 @@ function Dashboard() {
         <article className="dashboard-stat-card">
           <div className="dashboard-stat-card__top">
             <span>Task completion</span>
+
             <span className="dashboard-stat-card__icon dashboard-stat-card__icon--green">
               ✓
             </span>
@@ -129,6 +138,7 @@ function Dashboard() {
           <div className="dashboard-panel__header">
             <div>
               <h2>Project progress</h2>
+
               <p>Current progress across your projects.</p>
             </div>
 
@@ -152,7 +162,9 @@ function Dashboard() {
                 <div className="dashboard-project__bar">
                   <div
                     className="dashboard-project__bar-fill"
-                    style={{ width: `${project.progress}%` }}
+                    style={{
+                      width: `${project.progress}%`,
+                    }}
                   />
                 </div>
               </div>
@@ -164,6 +176,7 @@ function Dashboard() {
           <div className="dashboard-panel__header">
             <div>
               <h2>Workspace overview</h2>
+
               <p>Current workspace metrics.</p>
             </div>
           </div>
@@ -192,6 +205,7 @@ function Dashboard() {
 
           <div className="dashboard-overview__footer">
             <span>Workspace status</span>
+
             <strong>
               <span className="dashboard-overview__status-dot" />
               Operational
@@ -205,6 +219,7 @@ function Dashboard() {
           <div className="dashboard-panel__header">
             <div>
               <h2>Recent tasks</h2>
+
               <p>Latest work across your projects.</p>
             </div>
           </div>
@@ -214,9 +229,7 @@ function Dashboard() {
               <article className="dashboard-task" key={task.id}>
                 <div
                   className={`dashboard-task__priority dashboard-task__priority--${task.priority.toLowerCase()}`}
-                >
-                  {task.priority}
-                </div>
+                />
 
                 <div className="dashboard-task__content">
                   <strong>{task.title}</strong>
@@ -239,6 +252,7 @@ function Dashboard() {
           <div className="dashboard-panel__header">
             <div>
               <h2>Recent invoices</h2>
+
               <p>Latest billing activity.</p>
             </div>
           </div>
