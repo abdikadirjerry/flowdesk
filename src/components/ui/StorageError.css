@@ -1,0 +1,33 @@
+.storage-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 16px;
+  background: #fff7ed;
+  border-bottom: 1px solid #fed7aa;
+  color: #9a3412;
+}
+
+.storage-error > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 900px;
+  text-align: center;
+}
+
+.storage-error strong {
+  font-size: 11px;
+}
+
+.storage-error span {
+  font-size: 10px;
+}
+
+@media (max-width: 700px) {
+  .storage-error > div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+}

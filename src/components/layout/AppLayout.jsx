@@ -2,8 +2,12 @@ import { NavLink, Outlet } from "react-router-dom";
 import GlobalSearch from "../search/GlobalSearch";
 import NotificationPanel from "../notifications/NotificationPanel";
 import UserProfile from "../profile/UserProfile";
+import StorageError from "../ui/StorageError";
+import { useProjects } from "../../context/useProjects";
 
 function AppLayout() {
+  const { storageError } = useProjects();
+
   return (
     <div className="app-shell">
       <aside className="sidebar">
@@ -89,7 +93,9 @@ function AppLayout() {
         <div className="sidebar-bottom">
           <div className="workspace-card">
             <span className="workspace-card-label">Current workspace</span>
+
             <strong>Acme Studio</strong>
+
             <span className="workspace-card-status">Free workspace</span>
           </div>
 
@@ -120,10 +126,14 @@ function AppLayout() {
 
           <div className="topbar-actions">
             <GlobalSearch />
+
             <NotificationPanel />
+
             <UserProfile />
           </div>
         </header>
+
+        {storageError && <StorageError />}
 
         <Outlet />
       </div>
