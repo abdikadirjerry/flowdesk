@@ -7,21 +7,35 @@ const STORAGE_KEY = "flowdesk-projects";
 
 function ProjectProvider({ children }) {
   const [projects, setProjects] = useState(() => {
-    const savedProjects = localStorage.getItem(STORAGE_KEY);
+    try {
+      const savedProjects = localStorage.getItem(STORAGE_KEY);
 
-    if (savedProjects) {
-      try {
-        return JSON.parse(savedProjects);
-      } catch {
+      if (!savedProjects) {
         return projectsData;
       }
-    }
 
-    return projectsData;
+      const parsedProjects = JSON.parse(savedProjects);
+
+      if (!Array.isArray(parsedProjects)) {
+        return projectsData;
+      }
+
+      return parsedProjects;
+    } catch {
+      return projectsData;
+    }
   });
 
+  const [storageError, setStorageError] = useState(false);
+
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+
+      setStorageError(false);
+    } catch {
+      setStorageError(true);
+    }
   }, [projects]);
 
   function addProject(projectData) {
@@ -74,6 +88,7 @@ function ProjectProvider({ children }) {
     <ProjectContext.Provider
       value={{
         projects,
+        storageError,
         addProject,
         updateProject,
         deleteProject,
