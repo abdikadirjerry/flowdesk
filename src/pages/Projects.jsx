@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import ProjectCard from "../components/projects/ProjectCard";
 import ProjectFilters from "../components/projects/ProjectFilters";
 import ProjectModal from "../components/projects/ProjectModal";
+import EmptyState from "../components/ui/EmptyState";
 import { useProjects } from "../context/useProjects";
 import "../components/projects/ProjectCard.css";
 import "../components/projects/ProjectModal.css";
@@ -101,6 +102,14 @@ function Projects() {
     updateProjectStatus(projectId, status);
   }
 
+  function handleClearFilters() {
+    setFilters({
+      search: "",
+      status: "All",
+      priority: "All",
+    });
+  }
+
   return (
     <>
       <section className="projects-page">
@@ -156,11 +165,20 @@ function Projects() {
               />
             ))}
           </div>
+        ) : projects.length === 0 ? (
+          <EmptyState
+            title="No projects yet"
+            message="Create your first project to start managing work in FlowDesk."
+            actionLabel="Create your first project"
+            onAction={handleOpenCreate}
+          />
         ) : (
-          <div className="projects-page__empty">
-            <h2>No projects found</h2>
-            <p>Try changing your search or filter options to find a project.</p>
-          </div>
+          <EmptyState
+            title="No matching projects"
+            message="No projects match your current search and filter settings."
+            actionLabel="Clear filters"
+            onAction={handleClearFilters}
+          />
         )}
       </section>
 
